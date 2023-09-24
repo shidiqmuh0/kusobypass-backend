@@ -1,18 +1,10 @@
+// your-endpoint.js
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
 
 const app = express();
-const port = process.env.PORT || 3000; // Memperbarui port agar sesuai dengan lingkungan
 
-// Middleware untuk mengizinkan CORS
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
-// Endpoint untuk scraping
 app.get("/", async (req, res) => {
     try {
         const url = req.query.url;
@@ -52,6 +44,4 @@ app.get("/", async (req, res) => {
     }
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
+module.exports = app; // Mengekspor aplikasi Express.js sebagai serverless function
